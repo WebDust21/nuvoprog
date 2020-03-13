@@ -19,7 +19,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/erincandescent/nuvoprog/target"
+	//"github.com/erincandescent/nuvoprog/target"
+	"../target"
 	"github.com/spf13/cobra"
 )
 

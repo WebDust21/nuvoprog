@@ -18,7 +18,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/erincandescent/nuvoprog/protocol"
+	//"github.com/erincandescent/nuvoprog/protocol"
+	"../protocol"
 )
 
 type Config interface {

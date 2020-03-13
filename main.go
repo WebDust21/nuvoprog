@@ -14,7 +14,8 @@
 
 package main
 
-import "github.com/erincandescent/nuvoprog/cmd"
+//import "github.com/erincandescent/nuvoprog/cmd"
+import "./cmd"
 
 func main() {
 	cmd.Execute()

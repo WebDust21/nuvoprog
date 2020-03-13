@@ -17,5 +17,6 @@
 package all
 
 import (
-	_ "github.com/erincandescent/nuvoprog/target/n76"
+	//_ "github.com/erincandescent/nuvoprog/target/n76"
+	_ "../n76"
 )

@@ -16,8 +16,10 @@ package n76
 import (
 	"errors"
 
-	"github.com/erincandescent/nuvoprog/protocol"
-	"github.com/erincandescent/nuvoprog/target"
+	//"github.com/erincandescent/nuvoprog/protocol"
+	//"github.com/erincandescent/nuvoprog/target"
+	"../../protocol"
+	"../..//target"
 )
 
 //go:generate enumer -type=BootSelect -trimprefix=BootFrom -transform=snake -json -text

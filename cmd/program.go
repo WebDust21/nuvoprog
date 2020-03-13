@@ -15,7 +15,8 @@
 package cmd
 
 import (
-	"github.com/erincandescent/nuvoprog/protocol"
+	//"github.com/erincandescent/nuvoprog/protocol"
+	"../protocol"
 	"github.com/spf13/cobra"
 )
 
