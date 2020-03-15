@@ -1,3 +1,61 @@
+### A tool for programming Nuvoton devices, particularly focusing on their modern 8051 family 
+
+### \*\* Experimental MS51FB version \*\*
+	
+### Notes: 
+Possible targets are Nuvoton N76E003 and MS51FB9AE. 
+The programmer utility has been tested with Nu-Link-Me on a NT-MS51FB 8051 NuTiny dev board.
+
+The Program memory is limited to 12KB for both the N76E003 and MS51FB9AE processors because the image split command does not 
+parse the chip configuration to determine the split between the program flash and load flash memory, 
+So it defaults to the worst case of 4KB of load flash. (The N76E003 might be able to be upped to 14KB, but it was set to 
+12KB by original author).
+
+### If you are going to rebuild this program:
+The include paths are setup as relative, so this program source code should be copied to your system 
+(git clone of zip file - https://github.com/mountaintom/nuvoprog.git - at this time the latest version may be in one of the branches) and 
+compiled (go build) in-place on your computer. The nuvoprog command should be run from there or manually moved to where you want it. 
+
+You can compile the nuvoprog utility as another name (such as nuvoprog-test) by changing the main directory name (such as nuvoprog to nuvoprog-test) then run go build.
+
+### Examples:
+```
+	Download flash data from chip:
+	./nuvoprog read ./flash-read.ihx --target MS51FB9AE 
+
+	Split downloaded flash data into Program, Load ROM and chip configuration files:
+	./nuvoprog image split -i ./flash-read.ihx --target MS51FB9AE  -a program-flash-data.ihx -l loader-flas-data.ihx -c chip-configuration.json 
+	Note: This is how to get an example chip-config json file to work with.
+
+	Program flash in chip:
+	./nuvoprog program --target ms51fb9ae -a ./program-to-flash.ihx -c @chip-configuration.json
+        Note: The files may be combined with "image merge" and the resulting ihx file programmed with the "-i" flag.
+```
+Usage:
+```
+  nuvoprog [command]
+
+Available Commands:
+  config      Configuration tools
+  devices     List connected programmers
+  help        Help about any command
+  image       Image manipulation commands
+  program     Program a target device
+  read        Read device flash contents
+
+Flags:
+  -h, --help            help for nuvoprog
+  -t, --target string   target device
+  -v, --verbose         make verbose (enable debug logging)
+
+Use "nuvoprog [command] --help" for more information about a command.
+subcommand is required
+```
+
+
+\*\*\*\*\*\*
+
+
 #nuvoprog - Nuvoton microcontroller programmer
 
 `nuvoprog` is an open source tool for programming Nuvoton microcontollers;

@@ -33,12 +33,13 @@ var targetName string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "nuvoprog",
-	Short: "Nuvoton device programmer ** experimental MS51FB upgraded version **",
+	Short: "Nuvoton device programmer ** experimental MS51FB version **",
 	Long: `A tool for programming Nuvoton devices, particularly
-	focusing on their modern 8051 family ** experimental MS51FB upgraded version **
+	focusing on their modern 8051 family ** experimental MS51FB version **
 	
 Notes: 
-Possible targets are Novoton N76E003 and MS51FB9AE. The programmer utility has been tested with MyLink on a 8051 NuTiny dev board.
+Possible targets are Novoton N76E003 and MS51FB9AE. 
+The programmer utility has been tested with Nu-Link-Me on a NT-MS51FB 8051 NuTiny dev board.
 
 The Program memory is limited to 12KB for both the N76E003 and MS51FB9AE processors because the image split command does not 
 parse the chip configuration to determine the split between the program flash and load flash memory, 
@@ -47,8 +48,8 @@ So it defaults to the worst case of 4KB of load flash. (The N76E003 might be abl
 
 If you are going to rebuild this program:
 The include paths are setup as relative, so this program source code should be copied to your system 
-(git clone of zip file - https://github.com/mountaintom/nuvoprog.git - at this time this modified version in in one of the branches) and 
-compiled (go build) in-place on your computer. The nuvoprog command run from there or manually moved to where you want it. 
+(git clone of zip file - https://github.com/mountaintom/nuvoprog.git - at this time the latest version may be in one of the branches) and 
+compiled (go build) in-place on your computer. The nuvoprog command should be run from there or manually moved to where you want it. 
 
 You can compile the nuvoprog utility as another name (such as nuvoprog-test) by changing the main directory name (such as nuvoprog to nuvoprog-test) then run go build.
 
@@ -58,7 +59,11 @@ Examples:
 
 	Split downloaded flash data into Program, Load ROM and chip configuration files:
 	./nuvoprog image split -i ./flash-read.ihx --target MS51FB9AE  -a program-flash-data.ihx -l loader-flas-data.ihx -c chip-configuration.json 
-	Note: This is how to get an example chip-config json to work with file.
+	Note: This is how to get an example chip-config json file to work with.
+
+	Program flash in chip:
+	./nuvoprog program --target ms51fb9ae -a ./program-to-flash.ihx -c @chip-configuration.json
+        Note: The files may be combined with "image merge" and the resulting ihx file programmed with the "-i" flag. 
 `,
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		if !verbose {
