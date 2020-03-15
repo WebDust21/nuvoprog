@@ -33,9 +33,33 @@ var targetName string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "nuvoprog",
-	Short: "Nuvoton device programmer",
+	Short: "Nuvoton device programmer ** experimental MS51FB upgraded version **",
 	Long: `A tool for programming Nuvoton devices, particularly
-	focusing on their modern 8051 family`,
+	focusing on their modern 8051 family ** experimental MS51FB upgraded version **
+	
+Notes: 
+Possible targets are Novoton N76E003 and MS51FB9AE. The programmer utility has been tested with MyLink on a 8051 NuTiny dev board.
+
+The Program memory is limited to 12KB for both the N76E003 and MS51FB9AE processors because the image split command does not 
+parse the chip configuration to determine the split between the program flash and load flash memory, 
+So it defaults to the worst case of 4KB of load flash. (The N76E003 might be able to be upped to 14KB, but it was set to 
+12KB by original author).
+
+If you are going to rebuild this program:
+The include paths are setup as relative, so this program source code should be copied to your system 
+(git clone of zip file - https://github.com/mountaintom/nuvoprog.git - at this time this modified version in in one of the branches) and 
+compiled (go build) in-place on your computer. The nuvoprog command run from there or manually moved to where you want it. 
+
+You can compile the nuvoprog utility as another name (such as nuvoprog-test) by changing the main directory name (such as nuvoprog to nuvoprog-test) then run go build.
+
+Examples:
+	Download flash data from chip:
+	./nuvoprog read ./flash-read.ihx --target MS51FB9AE 
+
+	Split downloaded flash data into Program, Load ROM and chip configuration files:
+	./nuvoprog image split -i ./flash-read.ihx --target MS51FB9AE  -a program-flash-data.ihx -l loader-flas-data.ihx -c chip-configuration.json 
+	Note: This is how to get an example chip-config json to work with file.
+`,
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		if !verbose {
 			log.SetOutput(ioutil.Discard)

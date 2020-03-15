@@ -19,7 +19,7 @@ import (
 	//"github.com/erincandescent/nuvoprog/protocol"
 	//"github.com/erincandescent/nuvoprog/target"
 	"../../protocol"
-	"../..//target"
+	"../../target"
 )
 
 //go:generate enumer -type=BootSelect -trimprefix=BootFrom -transform=snake -json -text
