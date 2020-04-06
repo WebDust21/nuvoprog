@@ -6,6 +6,10 @@
 Possible targets are Nuvoton N76E003 and MS51FB9AE. 
 The programmer utility has been tested with Nu-Link-Me on a NT-MS51FB 8051 NuTiny dev board.
 
+This programmer, additionally works with generic Nu-Link programmers. Has been tested with a generic programmer in a black case with one multicolored status LED, and a clear case version with status LEDs visible through the plastic case.
+
+None of these programmers have any documentation, however the pinnout is the same as the official Nuvoton programmers. Just make sute you are connecting the programmer to your processor chip correctly by checking which end of the connector is Vcc and which is GND.
+
 The Program memory is limited to 12KB for both the N76E003 and MS51FB9AE processors because the image split command does not 
 parse the chip configuration to determine the split between the program flash and load flash memory, 
 So it defaults to the worst case of 4KB of load flash. (The N76E003 might be able to be upped to 14KB, but it was set to 
@@ -53,7 +57,7 @@ subcommand is required
 ```
 
 
-\*\*\*\*\*\*
+\*\*\*\*\*\* The original documentation from Erincandescent follows:
 
 
 #nuvoprog - Nuvoton microcontroller programmer
