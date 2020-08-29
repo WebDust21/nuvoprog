@@ -17,7 +17,7 @@ So it defaults to the worst case of 4KB of load flash. (The N76E003 might be abl
 
 ### If you are going to rebuild this program:
 The include paths are setup as relative, so this program source code should be copied to your system 
-(git clone of zip file - https://github.com/mountaintom/nuvoprog.git - at this time the latest version may be in one of the branches) and 
+(git clone or zip file - https://github.com/mountaintom/nuvoprog.git - at this time the latest version may be in one of the branches) and 
 compiled (go build) in-place on your computer. The nuvoprog command should be run from there or manually moved to where you want it. 
 
 You can compile the nuvoprog utility as another name (such as nuvoprog-test) by changing the main directory name (such as nuvoprog to nuvoprog-test) then run go build.
